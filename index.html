@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片格式实验室 · Image Format Lab</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ══ 顶部 Header ══ -->
+<div id="header">
+  <span id="header-title">🖼 图像格式实验室</span>
+  <div id="header-spacer"></div>
+  <span class="lang-badge">Image Format Lab · 132种转换 · 12种格式深度解析</span>
+</div>
+
+<!-- ══ 主工作区 ══ -->
+<div id="workspace">
+
+  <!-- ── 功能区1：步骤可视化（默认70%高度）── -->
+  <div id="zone1" style="height:70%">
+    <div id="zone1-inner">
+
+      <!-- 左侧导航 -->
+      <div id="step-nav">
+        <div id="step-nav-header">
+          <span id="step-nav-title">转换步骤</span>
+          <span id="step-nav-conv">BMP → JPEG</span>
+        </div>
+        <div id="step-list"></div>
+      </div>
+
+      <!-- 右侧步骤详情 -->
+      <div id="step-detail"></div>
+    </div>
+  </div>
+
+  <!-- ── 水平分割线 ── -->
+  <div id="divider-h" class="divider-h"></div>
+
+  <!-- ── 功能区2（默认30%高度）── -->
+  <div id="zone2" style="height:30%">
+
+    <!-- 左：原图 + 实时预览（默认40%宽） -->
+    <div id="z2-preview" style="flex:0 0 40%">
+      <div class="z2-header">
+        <span id="z2-preview-header">图片预览</span>
+      </div>
+      <div id="preview-panels">
+        <!-- 左半：原图 -->
+        <div class="preview-pane">
+          <div class="preview-pane-label">原始</div>
+          <div class="preview-img-wrap" id="preview-orig-wrap">
+            <div class="preview-placeholder" id="preview-orig-ph">
+              <div class="ico">📄</div>
+              <div>未选择文件</div>
+            </div>
+            <img id="preview-orig-img" style="display:none" alt="原始图片">
+          </div>
+        </div>
+        <!-- 右半：处理预览 -->
+        <div class="preview-pane">
+          <div class="preview-pane-label">处理预览</div>
+          <div class="preview-img-wrap" id="preview-proc-wrap">
+            <div class="preview-placeholder">
+              <div class="ico">🔄</div>
+              <div>选择文件后预览</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="preview-info-bar">等待文件...</div>
+    </div>
+
+    <!-- 垂直分割线1 -->
+    <div id="divider-v1" class="divider-v"></div>
+
+    <!-- 中：文件选择 + 格式选择（自动撑满） -->
+    <div id="z2-select" style="flex:1">
+      <div class="z2-header">
+        <span id="z2-select-header">选择文件与目标格式</span>
+      </div>
+      <div id="z2-select-inner"></div>
+    </div>
+
+    <!-- 垂直分割线2 -->
+    <div id="divider-v2" class="divider-v"></div>
+
+    <!-- 右：步骤控制（默认25%宽） -->
+    <div id="z2-control" style="flex:0 0 25%">
+      <div class="z2-header">
+        <span id="z2-control-header">步骤控制</span>
+      </div>
+      <div id="z2-control-inner"></div>
+    </div>
+
+  </div><!-- end zone2 -->
+</div><!-- end workspace -->
+
+<!-- ══ 脚本加载顺序 ══ -->
+<!-- shared: 基础设施 -->
+<!-- shared: 基础设施 -->
+<script src="shared/conversions.js"></script>
+<script src="shared/components.js"></script>
+<script src="shared/visuals.js"></script>
+<script src="shared/formatref.js"></script>
+
+<!-- common: 跨格式共享步骤 -->
+<script src="common/ycbcr.js"></script>
+<script src="common/subsample.js"></script>
+<script src="common/upsampling.js"></script>
+<script src="common/alpha.js"></script>
+
+<!-- formats: 各格式独立渲染器（按字母序） -->
+<script src="formats/bmp/parse.js"></script>
+<script src="formats/bmp/assemble.js"></script>
+<script src="formats/jpeg/parse.js"></script>
+<script src="formats/jpeg/encode.js"></script>
+<script src="formats/jpeg/pack.js"></script>
+<script src="formats/png/parse.js"></script>
+<script src="formats/png/filter.js"></script>
+<script src="formats/png/deflate.js"></script>
+<script src="formats/png/pack.js"></script>
+<script src="formats/gif/parse.js"></script>
+<script src="formats/gif/quant.js"></script>
+<script src="formats/gif/lzw.js"></script>
+<script src="formats/gif/pack.js"></script>
+<script src="formats/webp/parse.js"></script>
+<script src="formats/webp/encode.js"></script>
+<script src="formats/webp/pack.js"></script>
+<script src="formats/avif/parse.js"></script>
+<script src="formats/avif/encode.js"></script>
+<script src="formats/avif/pack.js"></script>
+<script src="formats/heif/parse.js"></script>
+<script src="formats/heif/encode.js"></script>
+<script src="formats/heif/pack.js"></script>
+<script src="formats/tiff/parse.js"></script>
+<script src="formats/tiff/encode.js"></script>
+<script src="formats/tiff/pack.js"></script>
+<script src="formats/svg/parse.js"></script>
+<script src="formats/svg/vectorize.js"></script>
+<script src="formats/svg/pack.js"></script>
+<script src="formats/ico/parse.js"></script>
+<script src="formats/ico/assemble.js"></script>
+<script src="formats/tga/parse.js"></script>
+<script src="formats/tga/assemble.js"></script>
+<script src="formats/pnm/parse.js"></script>
+<script src="formats/pnm/assemble.js"></script>
+
+<!-- modals: 高级模式弹窗 -->
+<script src="modals/modals.js"></script>
+
+<!-- app JS -->
+<script src="js/detector.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/zone2.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
